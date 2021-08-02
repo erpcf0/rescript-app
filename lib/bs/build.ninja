@@ -1,0 +1,43 @@
+rescript = 1
+g_finger := C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\@rescript\react\lib\ocaml\install.stamp
+g_finger := C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\bs-webapi\lib\ocaml\install.stamp
+rule astj
+  command = "C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\rescript\win32\bsc.exe"  -bs-v 9.1.4 -bs-jsx 3 -bs-super-errors -bs-no-version-header -absname -bs-ast -o $out $i
+o src\App.ast : astj ..\..\src\App.res
+rule deps
+  command = "C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\rescript\win32\bsb_helper.exe" -hash 3faa154504f6a9814d694df573ec9e77 $in
+  restat = 1
+o src\App.d : deps src\App.ast
+rule mij
+  command = "C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\rescript\win32\bsc.exe" -I "src\bindings" -I src -I "C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\@rescript\react\lib\ocaml" -I "C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\bs-webapi\lib\ocaml" -bs-super-errors -bs-no-version-header  -bs-package-name app -bs-package-output es6:$in_d:.bs.js -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src\App.cmj src\App.cmi ..\..\src\App.bs.js : mij src\App.ast
+o src\Item.ast : astj ..\..\src\Item.res
+o src\Item.d : deps src\Item.ast
+o src\Item.cmj src\Item.cmi ..\..\src\Item.bs.js : mij src\Item.ast
+o src\Index.ast : astj ..\..\src\Index.res
+o src\Index.d : deps src\Index.ast
+o src\Index.cmj src\Index.cmi ..\..\src\Index.bs.js : mij src\Index.ast
+o src\Input.ast : astj ..\..\src\Input.res
+o src\Input.d : deps src\Input.ast
+o src\Input.cmj src\Input.cmi ..\..\src\Input.bs.js : mij src\Input.ast
+o src\TodoItem.ast : astj ..\..\src\TodoItem.res
+o src\TodoItem.d : deps src\TodoItem.ast
+o src\TodoItem.cmj src\TodoItem.cmi ..\..\src\TodoItem.bs.js : mij src\TodoItem.ast
+o src\bindings\ReactExperimental.ast : astj ..\..\src\bindings\ReactExperimental.res
+o src\bindings\ReactExperimental.d : deps src\bindings\ReactExperimental.ast
+o src\bindings\ReactExperimental.cmj src\bindings\ReactExperimental.cmi ..\..\src\bindings\ReactExperimental.bs.js : mij src\bindings\ReactExperimental.ast
+o src\bindings\ReactDomExperimental.ast : astj ..\..\src\bindings\ReactDomExperimental.res
+o src\bindings\ReactDomExperimental.d : deps src\bindings\ReactDomExperimental.ast src\bindings\ReactDomExperimental.iast
+o src\bindings\ReactDomExperimental.iast : astj ..\..\src\bindings\ReactDomExperimental.resi
+rule mi
+  command = "C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\rescript\win32\bsc.exe" -I "src\bindings" -I src -I "C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\@rescript\react\lib\ocaml" -I "C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\bs-webapi\lib\ocaml" -bs-super-errors -bs-no-version-header  -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src\bindings\ReactDomExperimental.cmi : mi src\bindings\ReactDomExperimental.iast
+rule mj
+  command = "C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\rescript\win32\bsc.exe" -bs-read-cmi -I "src\bindings" -I src -I "C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\@rescript\react\lib\ocaml" -I "C:\Users\ERLAND\Documents\CODIGO\RESCRIPT\my-app\node_modules\bs-webapi\lib\ocaml" -bs-super-errors -bs-no-version-header  -bs-package-name app -bs-package-output es6:$in_d:.bs.js -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src\bindings\ReactDomExperimental.cmj ..\..\src\bindings\ReactDomExperimental.bs.js : mj src\bindings\ReactDomExperimental.ast src\bindings\ReactDomExperimental.cmi

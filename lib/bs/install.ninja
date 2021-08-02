@@ -1,0 +1,36 @@
+rescript = 1
+rule cp
+  command = cmd.exe /C copy /Y $i $out >NUL
+rule touch
+ command = cmd.exe /C type nul >>$out & copy $out+,, >NUL
+o App.cmi : cp ..\bs\src\App.cmi
+o App.cmj : cp ..\bs\src\App.cmj
+o App.cmt : cp ..\bs\src\App.cmt
+o App.res : cp ..\..\src\App.res
+o Item.cmi : cp ..\bs\src\Item.cmi
+o Item.cmj : cp ..\bs\src\Item.cmj
+o Item.cmt : cp ..\bs\src\Item.cmt
+o Item.res : cp ..\..\src\Item.res
+o Index.cmi : cp ..\bs\src\Index.cmi
+o Index.cmj : cp ..\bs\src\Index.cmj
+o Index.cmt : cp ..\bs\src\Index.cmt
+o Index.res : cp ..\..\src\Index.res
+o Input.cmi : cp ..\bs\src\Input.cmi
+o Input.cmj : cp ..\bs\src\Input.cmj
+o Input.cmt : cp ..\bs\src\Input.cmt
+o Input.res : cp ..\..\src\Input.res
+o TodoItem.cmi : cp ..\bs\src\TodoItem.cmi
+o TodoItem.cmj : cp ..\bs\src\TodoItem.cmj
+o TodoItem.cmt : cp ..\bs\src\TodoItem.cmt
+o TodoItem.res : cp ..\..\src\TodoItem.res
+o ReactExperimental.cmi : cp ..\bs\src\bindings\ReactExperimental.cmi
+o ReactExperimental.cmj : cp ..\bs\src\bindings\ReactExperimental.cmj
+o ReactExperimental.cmt : cp ..\bs\src\bindings\ReactExperimental.cmt
+o ReactExperimental.res : cp ..\..\src\bindings\ReactExperimental.res
+o ReactDomExperimental.cmi : cp ..\bs\src\bindings\ReactDomExperimental.cmi
+o ReactDomExperimental.cmj : cp ..\bs\src\bindings\ReactDomExperimental.cmj
+o ReactDomExperimental.cmt : cp ..\bs\src\bindings\ReactDomExperimental.cmt
+o ReactDomExperimental.res : cp ..\..\src\bindings\ReactDomExperimental.res
+o ReactDomExperimental.resi : cp ..\..\src\bindings\ReactDomExperimental.resi
+o ReactDomExperimental.cmti : cp ..\bs\src\bindings\ReactDomExperimental.cmti
+build install.stamp : touch App.cmi App.cmj Item.cmi Item.cmj Index.cmi Index.cmj Input.cmi Input.cmj TodoItem.cmi TodoItem.cmj ReactExperimental.cmi ReactExperimental.cmj ReactDomExperimental.cmi ReactDomExperimental.cmj 
